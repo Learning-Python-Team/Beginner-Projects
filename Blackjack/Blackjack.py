@@ -19,8 +19,21 @@ while play_again == 'true':
         deck = ['A', 'A', 'A', 'A', 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7,
                 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 'J', 'J', 'J', 'J',
                 'Q', 'Q', 'Q', 'Q', 'K', 'K', 'K', 'K']
-
-
+        
+        #Function for checking if the player wants to play again after the game ends
+        def play_again_option():
+                print('Would you like to play again?')
+                play_again_input = input('?> ').lower()
+                if play_again_input == 'no':
+                        quit()
+                elif play_again_input == 'yes':
+                        print('')
+                        play_again = 'true'
+                else:
+                        print('Please choose one of the options!')
+                        play_again_option()
+                        
+      
         def stick():
             print('Stick, got it')
             print('The value of your hand is {}'.format(hand_value))
@@ -28,37 +41,30 @@ while play_again == 'true':
             if hand_value > dealer_hand_value:
                 print('You win!')
                 #Checks if player wants to play again
-                print('Would you like to play again?')
-                play_again_input = input('?> ').lower()
-                if play_again_input == 'no':
-                        quit() #play_again = 'false' is not working here for some reason.
-                else:
-                        print('')
+                play_again_option()
             else:
                 print('Dealer wins!')
                 #Checks if player wants to play again
-                print('Would you like to play again?')
-                play_again_input = input('?> ').lower()
-                if play_again_input == 'no':
-                        quit() #play_again = 'false' is not working here for some reason.
-                else:
-                        print('')
+                play_again_option()
 
 
         def card_value(card):
             if card in range(2, 11):
                 card_value = card
-            # If card is Ace, assign value to 11
-            # todo Give player choice of using Ace as 1 or 11
             if card == 'A':
-                print('You got an Ace! Do you choose a value of 1 or 11?')
-                ace_input = input('?> ')
-                if ace_input == '1':
-                        card_value = 1
-                elif ace_input == '11':
-                        card_value = 11
-                else:
-                        print('')
+                #Player chooses whether to use Ace as a 1 or 11
+                temp_var = 'true'
+                while temp_var == 'true':
+                        print('You got an Ace! Do you choose a value of 1 or 11?')
+                        ace_input = input('?> ')
+                        if ace_input == '1':
+                                card_value = 1
+                                temp_var = 'false'
+                        elif ace_input == '11':
+                                card_value = 11
+                                temp_var = 'false'
+                        else:
+                                print('Please choose one of the options!')
             # If card is J/Q/K
             if card in ['J', 'Q', 'K']:
                 card_value = 10
@@ -117,21 +123,16 @@ while play_again == 'true':
                 print('Dealer is bust!')
                 print('You win!')
                 #Checks if player wants to play again
-                print('Would you like to play again?')
-                play_again_input = input('?> ').lower()
-                if play_again_input == 'no':
-                        play_again = 'false'
-                else:
-                        print('')
+                play_again_option()
                 
 
         # HIT OR STICK
         print('Hit, or stick?', end=' ')
         print('')
-        user_input = input('?> ')
+        user_input = input('?> ').lower()
         print('')
 
-        if user_input.lower() == 'hit':
+        if user_input == 'hit':
             print('Ok partner, third card coming up')
             card3_index = np.random.randint(52)
             card3 = deck[card3_index]
@@ -145,18 +146,13 @@ while play_again == 'true':
             if hand_value > 21:
                 print('Bust! Too bad.')
                 #Checks if player wants to play again
-                print('Would you like to play again?')
-                play_again_input = input('?> ').lower()
-                if play_again_input == 'no':
-                        play_again = 'false'
-                else:
-                        print('')
+                play_again_option()
 
             if hand_value <= 21:
                 print('Hit, or stick?')
-                user_input = input()
+                user_input = input('?> ').lower()
 
-                if user_input.lower() == 'hit':
+                if user_input == 'hit':
                     print('Ok partner, fourth card coming up')
                     card4_index = np.random.randint(52)
                     card4 = deck[card4_index]
@@ -170,15 +166,10 @@ while play_again == 'true':
                     if hand_value > 21:
                         print('Bust! Too bad.')
                         #Checks if player wants to play again
-                        print('Would you like to play again?')
-                        play_again_input = input('?> ').lower()
-                        if play_again_input == 'no':
-                                play_again = 'false'
-                        else:
-                                print('')
+                        play_again_option()
 
-            elif user_input.lower() == 'stick':
+            elif user_input == 'stick':
                 stick()
 
-        elif user_input.lower() == 'stick':
+        elif user_input == 'stick':
                 stick()
