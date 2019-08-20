@@ -7,7 +7,6 @@
 # MAKE THIS CODE NEATER BY USING FUNCTIONS! (Maybe make a new branch for this)
 # todo Allow dealer to draw fourth card.
 # todo If player is dealt a card, that card should be removed from deck. So less chance of getting it next time!
-# todo Ability to play again
 # todo (ADVANCED FEATURE) Add ability to bet
 # todo (ADVANCED FEATURE) Add suits
 
@@ -52,7 +51,14 @@ while play_again == 'true':
             # If card is Ace, assign value to 11
             # todo Give player choice of using Ace as 1 or 11
             if card == 'A':
-                card_value = 11
+                print('You got an Ace! Do you choose a value of 1 or 11?')
+                ace_input = input('?> ')
+                if ace_input == '1':
+                        card_value = 1
+                elif ace_input == '11':
+                        card_value = 11
+                else:
+                        print('')
             # If card is J/Q/K
             if card in ['J', 'Q', 'K']:
                 card_value = 10
@@ -121,7 +127,9 @@ while play_again == 'true':
 
         # HIT OR STICK
         print('Hit, or stick?', end=' ')
-        user_input = input()
+        print('')
+        user_input = input('?> ')
+        print('')
 
         if user_input.lower() == 'hit':
             print('Ok partner, third card coming up')
@@ -173,3 +181,4 @@ while play_again == 'true':
                 stick()
 
         elif user_input.lower() == 'stick':
+                stick()
