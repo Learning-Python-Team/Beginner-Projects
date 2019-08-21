@@ -12,64 +12,65 @@
 
 import numpy as np
 
+deck = ['A', 'A', 'A', 'A', 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7,
+        8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 'J', 'J', 'J', 'J',
+        'Q', 'Q', 'Q', 'Q', 'K', 'K', 'K', 'K']
+
+
+# Function for checking if the player wants to play again after the game ends
+def play_again_option():
+    print('Would you like to play again?')
+    play_again_input = input('?> ').lower()
+    if play_again_input == 'no':
+        quit()
+    elif play_again_input == 'yes':
+        print('')
+        play_again = 'true'
+    else:
+        print('Please choose one of the options!')
+        play_again_option()
+
+
+def stick():
+    print('Stick, got it')
+    print('The value of your hand is {}'.format(hand_value))
+    print('The value of the dealer\'s hand is {}'.format(dealer_hand_value))
+    if hand_value > dealer_hand_value:
+        print('You win!')
+        # Checks if player wants to play again
+        play_again_option()
+    else:
+        print('Dealer wins!')
+        # Checks if player wants to play again
+        play_again_option()
+
+
+def card_value(card):
+    if card in range(2, 11):
+        card_value = card
+    if card == 'A':
+        # Player chooses whether to use Ace as a 1 or 11
+        temp_var = 'true'
+        while temp_var == 'true':
+            print('You got an Ace! Do you choose a value of 1 or 11?')
+            ace_input = input('?> ')
+            if ace_input == '1':
+                card_value = 1
+                temp_var = 'false'
+            elif ace_input == '11':
+                card_value = 11
+                temp_var = 'false'
+            else:
+                print('Please choose one of the options!')
+    # If card is J/Q/K
+    if card in ['J', 'Q', 'K']:
+        card_value = 10
+    return card_value
+
+
 play_again = 'true'
 
 while play_again == 'true':
-
-        deck = ['A', 'A', 'A', 'A', 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7,
-                8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 'J', 'J', 'J', 'J',
-                'Q', 'Q', 'Q', 'Q', 'K', 'K', 'K', 'K']
-        
-        #Function for checking if the player wants to play again after the game ends
-        def play_again_option():
-                print('Would you like to play again?')
-                play_again_input = input('?> ').lower()
-                if play_again_input == 'no':
-                        quit()
-                elif play_again_input == 'yes':
-                        print('')
-                        play_again = 'true'
-                else:
-                        print('Please choose one of the options!')
-                        play_again_option()
-                        
-      
-        def stick():
-            print('Stick, got it')
-            print('The value of your hand is {}'.format(hand_value))
-            print('The value of the dealer\'s hand is {}'.format(dealer_hand_value))
-            if hand_value > dealer_hand_value:
-                print('You win!')
-                #Checks if player wants to play again
-                play_again_option()
-            else:
-                print('Dealer wins!')
-                #Checks if player wants to play again
-                play_again_option()
-
-
-        def card_value(card):
-            if card in range(2, 11):
-                card_value = card
-            if card == 'A':
-                #Player chooses whether to use Ace as a 1 or 11
-                temp_var = 'true'
-                while temp_var == 'true':
-                        print('You got an Ace! Do you choose a value of 1 or 11?')
-                        ace_input = input('?> ')
-                        if ace_input == '1':
-                                card_value = 1
-                                temp_var = 'false'
-                        elif ace_input == '11':
-                                card_value = 11
-                                temp_var = 'false'
-                        else:
-                                print('Please choose one of the options!')
-            # If card is J/Q/K
-            if card in ['J', 'Q', 'K']:
-                card_value = 10
-            return card_value
-
 
         card1_index = np.random.randint(52)
         card2_index = np.random.randint(52)
