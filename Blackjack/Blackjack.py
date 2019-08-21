@@ -72,105 +72,105 @@ play_again = 'true'
 
 while play_again == 'true':
 
-        card1_index = np.random.randint(52)
-        card2_index = np.random.randint(52)
+    card1_index = np.random.randint(52)
+    card2_index = np.random.randint(52)
 
-        # print('The randomly generated index for card 1 is {}'.format(card1_index))
-        # print('The randomly generated index for card 2 is {}'.format(card2_index))
+    # print('The randomly generated index for card 1 is {}'.format(card1_index))
+    # print('The randomly generated index for card 2 is {}'.format(card2_index))
 
-        card1 = deck[card1_index]
-        card2 = deck[card2_index]
+    card1 = deck[card1_index]
+    card2 = deck[card2_index]
 
-        print('First card is a {}'.format(card1))
-        print('Second card is a {}'.format(card2))
+    print('First card is a {}'.format(card1))
+    print('Second card is a {}'.format(card2))
 
-        # assign card values
-        card1_value = card_value(card1)
-        card2_value = card_value(card2)
+    # assign card values
+    card1_value = card_value(card1)
+    card2_value = card_value(card2)
 
-        # #VALUE OF YOUR HAND
-        hand_value = card1_value + card2_value
-        print('The value of your hand is {}'.format(hand_value))
+    # #VALUE OF YOUR HAND
+    hand_value = card1_value + card2_value
+    print('The value of your hand is {}'.format(hand_value))
 
-        # #DEALER HAND
-        dealer1_index = np.random.randint(52)
-        dealer2_index = np.random.randint(52)
+    # #DEALER HAND
+    dealer1_index = np.random.randint(52)
+    dealer2_index = np.random.randint(52)
 
-        dealer1 = deck[dealer1_index]
-        dealer2 = deck[dealer2_index]
+    dealer1 = deck[dealer1_index]
+    dealer2 = deck[dealer2_index]
 
-        # #ASSIGNING DEALER CARD 1 VALUEs
-        dealer1_value = card_value(dealer1)
-        dealer2_value = card_value(dealer2)
+    # #ASSIGNING DEALER CARD 1 VALUEs
+    dealer1_value = card_value(dealer1)
+    dealer2_value = card_value(dealer2)
 
-        # #VALUE OF DEALER HAND
-        dealer_hand_value = dealer1_value + dealer2_value
-        print('Dealer hand value (just here for debugging) is {}'.format(dealer_hand_value))
+    # #VALUE OF DEALER HAND
+    dealer_hand_value = dealer1_value + dealer2_value
+    print('Dealer hand value (just here for debugging) is {}'.format(dealer_hand_value))
 
-        # Dealer drawing a third card
-        if dealer_hand_value < 15:
-            print('dealer is drawing a third card (just here for debugging)')
-            dealer3_index = np.random.randint(52)
-            dealer3 = deck[dealer3_index]
+    # Dealer drawing a third card
+    if dealer_hand_value < 15:
+        print('dealer is drawing a third card (just here for debugging)')
+        dealer3_index = np.random.randint(52)
+        dealer3 = deck[dealer3_index]
 
-            # #ASSIGNING DEALER 3 VALUE
-            dealer3_value = card_value(dealer3)
+        # #ASSIGNING DEALER 3 VALUE
+        dealer3_value = card_value(dealer3)
 
-            # #NEW VALUE OF DEALER HAND
-            dealer_hand_value += dealer3_value
-            print('New dealer hand value is {}'.format(dealer_hand_value))
+        # #NEW VALUE OF DEALER HAND
+        dealer_hand_value += dealer3_value
+        print('New dealer hand value is {}'.format(dealer_hand_value))
 
-            if dealer_hand_value > 21:
-                print('Dealer is bust!')
-                print('You win!')
-                #Checks if player wants to play again
-                play_again_option()
-                
+        if dealer_hand_value > 21:
+            print('Dealer is bust!')
+            print('You win!')
+            #Checks if player wants to play again
+            play_again_option()
 
-        # HIT OR STICK
-        print('Hit, or stick?', end=' ')
-        print('')
-        user_input = input('?> ').lower()
-        print('')
 
-        if user_input == 'hit':
-            print('Ok partner, third card coming up')
-            card3_index = np.random.randint(52)
-            card3 = deck[card3_index]
-            print('Third card is a {}'.format(card3))
+    # HIT OR STICK
+    print('Hit, or stick?', end=' ')
+    print('')
+    user_input = input('?> ').lower()
+    print('')
 
-            # #ASSIGNING CARD 3 VALUE
-            card3_value = card_value(card3)
+    if user_input == 'hit':
+        print('Ok partner, third card coming up')
+        card3_index = np.random.randint(52)
+        card3 = deck[card3_index]
+        print('Third card is a {}'.format(card3))
 
-            hand_value += card3_value
-            print('The value of your hand is now {}'.format(hand_value))
-            if hand_value > 21:
-                print('Bust! Too bad.')
-                #Checks if player wants to play again
-                play_again_option()
+        # #ASSIGNING CARD 3 VALUE
+        card3_value = card_value(card3)
 
-            if hand_value <= 21:
-                print('Hit, or stick?')
-                user_input = input('?> ').lower()
+        hand_value += card3_value
+        print('The value of your hand is now {}'.format(hand_value))
+        if hand_value > 21:
+            print('Bust! Too bad.')
+            #Checks if player wants to play again
+            play_again_option()
 
-                if user_input == 'hit':
-                    print('Ok partner, fourth card coming up')
-                    card4_index = np.random.randint(52)
-                    card4 = deck[card4_index]
-                    print('Fourth card is a {}'.format(card4))
+        if hand_value <= 21:
+            print('Hit, or stick?')
+            user_input = input('?> ').lower()
 
-                    # ASSIGNING CARD 4 VALUE
-                    card4_value = card_value(card4)
+            if user_input == 'hit':
+                print('Ok partner, fourth card coming up')
+                card4_index = np.random.randint(52)
+                card4 = deck[card4_index]
+                print('Fourth card is a {}'.format(card4))
 
-                    hand_value += card4_value
-                    print('The value of your hand is now {}'.format(hand_value))
-                    if hand_value > 21:
-                        print('Bust! Too bad.')
-                        #Checks if player wants to play again
-                        play_again_option()
+                # ASSIGNING CARD 4 VALUE
+                card4_value = card_value(card4)
 
-            elif user_input == 'stick':
-                stick()
+                hand_value += card4_value
+                print('The value of your hand is now {}'.format(hand_value))
+                if hand_value > 21:
+                    print('Bust! Too bad.')
+                    #Checks if player wants to play again
+                    play_again_option()
 
         elif user_input == 'stick':
-                stick()
+            stick()
+
+    elif user_input == 'stick':
+            stick()
