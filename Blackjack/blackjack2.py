@@ -58,8 +58,6 @@ def check_cards():
         print("Player Busted")
 
 
-
-
 while True:
     # draw player cards
     pc1 = draw_card()
